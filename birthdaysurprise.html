@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Love!</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+    #greeting {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.5em;
+      opacity: 1;
+    }
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.2em;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    #surprise-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #ff6347;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #surprise-button:hover {
+      background-color: #ff4500;
+    }
+    .balloon {
+      position: absolute;
+      width: 20px;
+      height: 30px;
+      background-color: hsl(var(--hue), 80%, 60%);
+      border-radius: 50% 50% 20% 20%;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <div id="greeting">Happy Birthday, Love !</div>
+  <div id="message">
+    <p>Let’s make this birthday unforgettable. 🎂</p>
+    <p>Surprise! 🎉 I made this just for you! You mean the world to me, and I hope this year brings you endless joy. Love, Kate 💕</p>
+    <p>You're the light of my life, and today we celebrate <strong>you</strong>! I’m so lucky to have you. 💖</p>
+    <p>With all my heart,<br><strong>Your girl 💕</strong></p>
+  </div>
+  <button id="surprise-button">Click me 🎁</button>
+  <audio id="romantic-music">
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    let balloons = [];
+
+    function setup() {
+      createCanvas(window.innerWidth, window.innerHeight);
+      for (let i = 0; i < 20; i++) {
+        balloons.push({
+          x: random(width),
+          y: random(height),
+          hue: random(0, 360)
+        });
+      }
+    }
+
+    function draw() {
+      background(26, 26, 26);
+      noStroke();
+      for (let balloon of balloons) {
+        fill(balloon.hue, 80, 60);
+        ellipse(balloon.x, balloon.y, 20, 30);
+        balloon.y -= 0.5;
+        if (balloon.y < -30) balloon.y = height + 30;
+      }
+      if (frameCount % 10 === 0) {
+        fill(random(255), random(255), random(255), 150);
+        rect(random(width), random(height), 5, 5);
+      }
+    }
+
+    // Surprise button functionality
+    const message = document.getElementById('message');
+    const button = document.getElementById('surprise-button');
+    button.addEventListener('click', () => {
+      message.style.opacity = '1';
+      button.style.display = 'none'; // Hide button after click
+      const audio = document.getElementById('romantic-music');
+      audio.muted = false;
+      audio.play().catch(error => console.log("Audio play failed:", error));
+    });
+  </script>
+</body>
+</html>
