@@ -72,10 +72,10 @@
     <p>With all my heart,<br><strong>Your girl 💕</strong></p>
   </div>
   <button id="surprise-button">Click me 🎁</button>
-  <audio id="romantic-music">
+  <!-- <audio id="romantic-music">
     <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
-  </audio>
+  </audio> -->
 
   <script>
     let balloons = [];
@@ -109,13 +109,13 @@
     // Surprise button functionality
     const message = document.getElementById('message');
     const button = document.getElementById('surprise-button');
-    button.addEventListener('click', () => {
-      message.style.opacity = '1';
-      button.style.display = 'none'; // Hide button after click
-      const audio = document.getElementById('romantic-music');
-      audio.muted = false;
-      audio.play().catch(error => console.log("Audio play failed:", error));
-    });
+    // button.addEventListener('click', () => {
+    //   message.style.opacity = '1';
+    //   button.style.display = 'none'; // Hide button after click
+    //   const audio = document.getElementById('romantic-music');
+    //   audio.muted = false;
+    //   audio.play().catch(error => console.log("Audio play failed:", error));
+    // });
   </script>
 </body>
 </html>
